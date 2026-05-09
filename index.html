@@ -1,66 +1,83 @@
-          <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BazarBD Express - Online Shopping</title>
+    <title>BazarBD Express | Login to Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #main-site { display: none; } /* লগইন না করা পর্যন্ত সাইট দেখা যাবে না */
+    </style>
 </head>
 <body class="bg-gray-100">
 
-    <nav class="bg-indigo-700 text-white p-4 sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold italic tracking-wider">BazarBD Express</h1>
-            <div class="flex-1 mx-6 hidden md:block">
-                <div class="relative">
-                    <input type="text" placeholder="পণ্য খুঁজুন..." class="w-full p-2 rounded-lg text-black outline-none">
-                </div>
-            </div>
-            <div class="flex gap-5 items-center">
-                <i class="fas fa-shopping-cart text-xl"></i>
-            </div>
+    <div id="auth-section" class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-2xl shadow-xl w-80 text-center">
+            <h2 class="text-2xl font-bold text-orange-600 mb-4">BazarBD Express</h2>
+            <p class="text-gray-500 mb-6 text-sm">লগইন করে শপিং শুরু করুন</p>
+            <input id="username" type="text" placeholder="ইউজার নেম" class="w-full p-3 border rounded-lg mb-3 outline-none">
+            <input id="password" type="password" placeholder="পাসওয়ার্ড" class="w-full p-3 border rounded-lg mb-4 outline-none">
+            <button onclick="checkLogin()" class="w-full bg-orange-500 text-white py-3 rounded-lg font-bold">লগইন / একাউন্ট খুলুন</button>
+            <p class="mt-4 text-xs text-gray-400">গৌরব কর্তৃক সংরক্ষিত সিস্টেম</p>
         </div>
-    </nav>
-
-    <div class="m-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 p-8 text-white text-center shadow-xl">
-        <h2 class="text-3xl font-bold mb-2">Welcome to BazarBD Express!</h2>
-        <p class="opacity-90">সাশ্রয়ী মূল্যে সেরা গেজেট কিনুন</p>
     </div>
 
-    <section class="p-4 container mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div id="main-site">
+        <header class="bg-orange-500 text-white p-4 sticky top-0 z-50 flex justify-between items-center shadow-lg">
+            <h1 class="text-xl font-bold">BazarBD Express</h1>
+            <span id="user-display" class="text-sm font-medium bg-orange-700 px-3 py-1 rounded-full"></span>
+        </header>
+
+        <div class="p-4">
+            <h2 class="text-lg font-bold mb-4 border-b-2 border-orange-500 inline-block">আমাদের পণ্যসমূহ</h2>
             
-            <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1546868871-70c122467d9b?w=500" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h4 class="font-semibold text-gray-800">Smart Watch T800</h4>
-                    <p class="text-indigo-600 font-bold">৳ ১৫০০</p>
-                    <a href="https://wa.me/8801317496029text=I%20want%20to%20order%20Smart%20Watch" 
-                       class="w-full block text-center bg-green-500 text-white py-2 rounded-lg mt-2 font-bold">
-                       WhatsApp Order
-                    </a>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow flex items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1546868871-70c122467d9b?w=200" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-bold">স্মার্ট ওয়াচ (T800)</h4>
+                        <p class="text-orange-600 font-bold">৳ ১৫০০</p>
+                        <a href="https://wa.me/8801317496029?text=আমি স্মার্ট ওয়াচ অর্ডার করতে চাই" class="text-blue-600 text-sm font-bold mt-1 inline-block">অর্ডার দিন</a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow flex items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1622322062681-3e49e29f0004?w=200" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-bold">মিনি চার্জার ফ্যান</h4>
+                        <p class="text-orange-600 font-bold">৳ ৫৫০</p>
+                        <a href="https://wa.me/8801317496029?text=আমি মিনি ফ্যান অর্ডার করতে চাই" class="text-blue-600 text-sm font-bold mt-1 inline-block">অর্ডার দিন</a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow flex items-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1614030616194-46960f8546b1?w=200" class="w-20 h-20 rounded-lg object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-bold">ফাস্ট চার্জার (১৮ ওয়াট)</h4>
+                        <p class="text-orange-600 font-bold">৳ ৪৫০</p>
+                        <a href="https://wa.me/8801317496029?text=আমি ফাস্ট চার্জার অর্ডার করতে চাই" class="text-blue-600 text-sm font-bold mt-1 inline-block">অর্ডার দিন</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1588423770503-d1d93ef33d5d?w=500" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h4 class="font-semibold text-gray-800">Airpods Pro</h4>
-                    <p class="text-indigo-600 font-bold">৳ ৯৫০</p>
-                    <a href="https://wa.me/8801317496029?text=I%20want%20to%20order%20Airpods" 
-                       class="w-full block text-center bg-green-500 text-white py-2 rounded-lg mt-2 font-bold">
-                       WhatsApp Order
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </section>
+    </div>
 
-    <footer class="bg-gray-800 text-gray-400 p-8 mt-10 text-center">
-        <p class="text-white font-bold">© ২০২৬ BazarBD Express। সর্বস্বত্ব সংরক্ষিত।</p>
-    </footer>
+    <script>
+        function checkLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
+            if(user !== "" && pass !== "") {
+                // লগইন অ্যালগরিদম: সফল হলে সাইট দেখাবে
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+                document.getElementById('user-display').innerText = "স্বাগতম, " + user;
+                alert("আপনার একাউন্টে সফলভাবে প্রবেশ করেছেন!");
+            } else {
+                alert("দয়া করে নাম ও পাসওয়ার্ড দিন");
+            }
+        }
+    </script>
 </body>
-</html>  
+</html>      
