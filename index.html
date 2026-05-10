@@ -1,159 +1,96 @@
-       <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BazarBD Express | A to Z Original eCommerce</title>
+    <title>BazarBD Express | Original eCommerce Algorithm</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background: #f0f2f5; }
-        .product-card { transition: 0.3s; border-radius: 12px; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .cart-sidebar { transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f8f9fa; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+        #cartSidebar { transition: transform 0.4s ease-in-out; }
     </style>
 </head>
-<body>
+<body class="text-gray-800">
 
-    <header class="bg-white sticky top-0 z-[100] shadow-sm border-b">
+    <header class="bg-white sticky top-0 z-[1000] shadow-md">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            <h1 class="text-2xl font-black italic text-indigo-700">BazarBD<span class="text-orange-500">Express</span></h1>
+            <h1 class="text-2xl font-black italic tracking-tighter text-blue-700">BazarBD<span class="text-orange-500">Express</span></h1>
             
-            <div class="flex-1 max-w-xl relative hidden md:block">
-                <input type="text" placeholder="htbazar স্টাইলে পণ্য খুঁজুন..." class="w-full border rounded-full py-2 px-5 outline-none focus:border-indigo-500 bg-gray-50">
+            <div class="hidden md:flex flex-1 mx-6 relative">
+                <input id="searchBar" type="text" placeholder="পণ্য খুঁজুন..." class="w-full bg-gray-100 border-none rounded-full py-2.5 px-6 outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="absolute right-4 top-2.5 text-gray-400"><i class="fas fa-search"></i></button>
             </div>
 
-            <div class="flex items-center gap-6">
-                <div class="relative cursor-pointer" onclick="toggleCart()">
-                    <i class="fas fa-shopping-cart text-2xl text-gray-700"></i>
-                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] px-1.5 rounded-full font-bold">0</span>
+            <div class="flex items-center gap-5">
+                <div class="relative cursor-pointer" onclick="toggleCart(true)">
+                    <i class="fas fa-shopping-bag text-2xl text-gray-700"></i>
+                    <span id="cartBadge" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] px-1.5 rounded-full font-bold">0</span>
                 </div>
-                <i class="fas fa-user-circle text-2xl text-gray-400"></i>
+                <div class="hidden md:block">
+                    <p class="text-[10px] text-gray-400">কল করুন</p>
+                    <p class="text-xs font-bold">01317496029</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <nav class="bg-white border-b overflow-x-auto flex gap-8 px-6 py-3 font-bold text-sm text-gray-600">
-        <span class="text-indigo-700 border-b-2 border-indigo-700 pb-1 cursor-pointer">হোম</span>
-        <span class="cursor-pointer hover:text-indigo-700">স্মার্ট ওয়াচ</span>
-        <span class="cursor-pointer hover:text-indigo-700">ফ্যান</span>
-        <span class="cursor-pointer hover:text-indigo-700">চার্জার</span>
-        <span class="cursor-pointer hover:text-indigo-700">হেডফোন</span>
+    <nav class="bg-white border-b overflow-x-auto no-scrollbar flex gap-8 px-6 py-3 font-bold text-sm text-gray-500 shadow-sm">
+        <span class="text-blue-700 border-b-2 border-blue-700 pb-1">হোম</span>
+        <span class="hover:text-blue-700 cursor-pointer">স্মার্ট ওয়াচ</span>
+        <span class="hover:text-blue-700 cursor-pointer">মিনি ফ্যান</span>
+        <span class="hover:text-blue-700 cursor-pointer">ইলেকট্রনিক্স</span>
+        <span class="hover:text-blue-700 cursor-pointer">গ্যাজেট</span>
     </nav>
 
-    <main class="container mx-auto px-4 py-6">
-        
-        <div class="w-full h-40 md:h-60 bg-gradient-to-r from-indigo-800 to-indigo-500 rounded-2xl mb-8 flex items-center p-8 text-white relative shadow-inner overflow-hidden">
-            <div>
-                <h2 class="text-2xl md:text-4xl font-bold mb-2 uppercase">BazarBD Mega Offer</h2>
-                <p class="opacity-90">htbazar-এর চেয়েও সাশ্রয়ী মূল্যে সেরা পণ্য!</p>
+    <div class="container mx-auto p-4">
+        <div class="w-full h-40 md:h-64 bg-indigo-600 rounded-3xl relative overflow-hidden flex items-center p-8 text-white">
+            <div class="z-10">
+                <h2 class="text-2xl md:text-4xl font-bold mb-2 uppercase">সাশ্রয়ী দামে সেরা পণ্য!</h2>
+                <p class="opacity-90">BazarBD Express এ আপনাকে স্বাগতম।</p>
+                <button class="mt-4 bg-orange-500 px-6 py-2 rounded-lg font-bold shadow-lg">অর্ডার করুন</button>
             </div>
-            <i class="fas fa-bolt absolute right-5 text-9xl opacity-10"></i>
-        </div>
-
-        <h3 class="text-lg font-bold mb-6 text-gray-800 border-l-4 border-orange-500 pl-3">সকল ক্যাটাগরির পণ্য (A to Z)</h3>
-        
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            </div>
-    </main>
-
-    <div id="cartSidebar" class="fixed right-0 top-0 h-full w-full md:w-96 bg-white shadow-2xl z-[2000] transform translate-x-full cart-sidebar p-6">
-        <div class="flex justify-between items-center border-b pb-4 mb-4">
-            <h4 class="font-bold text-xl">আপনার পছন্দের তালিকা</h4>
-            <i onclick="toggleCart()" class="fas fa-times cursor-pointer text-2xl text-gray-400"></i>
-        </div>
-        <div id="cartItems" class="space-y-4 h-[65%] overflow-y-auto">
-            </div>
-        <div class="absolute bottom-0 left-0 w-full p-6 bg-gray-50 border-t">
-            <div class="flex justify-between font-bold text-xl mb-4">
-                <span>মোট বিল:</span>
-                <span id="totalAmount">৳ ০</span>
-            </div>
-            <button onclick="sendOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg">
-                <i class="fab fa-whatsapp text-xl"></i> সরাসরি অর্ডার দিন
-            </button>
+            <i class="fas fa-shopping-cart absolute right-[-30px] bottom-[-20px] text-[200px] opacity-10 rotate-[-15deg]"></i>
         </div>
     </div>
 
-    <footer class="bg-white border-t mt-12 p-10 text-center">
-        <h2 class="text-2xl font-black italic text-indigo-700">BazarBD Express</h2>
-        <p class="text-gray-400 text-sm mt-2">অরিজিনাল প্রোডাক্ট, সেরা দাম।</p>
-        <p class="text-gray-500 font-bold mt-4 text-xs">মালিক: গৌরব | হটলাইন: 01317496029</p>
-    </footer>
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex items-center justify-between mb-8">
+            <h3 class="text-xl font-bold border-l-4 border-orange-500 pl-3">সেরা কালেকশন</h3>
+            <span class="text-blue-700 font-bold text-sm cursor-pointer">সব দেখুন ></span>
+        </div>
 
-    <script>
-        // A to Z Product Database (htbazar style pictures)
-        const products = [
-            { id: 1, name: "Smart Watch Ultra T800", price: 1500, img: "https://images.unsplash.com/photo-1546868871-70c122467d9b?w=400" },
-            { id: 2, name: "Mini Portable Fan 2.0", price: 550, img: "https://images.unsplash.com/photo-1622322062681-3e49e29f0004?w=400" },
-            { id: 3, name: "18W Original Fast Charger", price: 450, img: "https://images.unsplash.com/photo-1614030616194-46960f8546b1?w=400" },
-            { id: 4, name: "Wireless Bluetooth Headphone", price: 1200, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
-            { id: 5, name: "Magnetic Power Bank 10k", price: 2200, img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400" }
-        ];
+        <div id="productContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            </div>
+    </main>
 
-        let cart = [];
-
-        // Display Algorithm
-        function loadProducts() {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card bg-white p-2 border border-gray-100">
-                    <img src="${p.img}" class="w-full h-40 object-cover rounded-lg">
-                    <div class="p-2">
-                        <h5 class="text-sm font-bold text-gray-700 truncate">${p.name}</h5>
-                        <p class="text-indigo-700 font-black mt-1">৳${p.price}</p>
-                        <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-indigo-600 text-white py-2 rounded-lg text-xs font-bold shadow-md hover:bg-orange-500 transition">ADD TO CART</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Cart Algorithm
-        function addToCart(id) {
-            const item = products.find(p => p.id === id);
-            cart.push(item);
-            updateCart();
-            toggleCart(true);
-        }
-
-        function updateCart() {
-            document.getElementById('cartCount').innerText = cart.length;
-            const cartItems = document.getElementById('cartItems');
-            cartItems.innerHTML = cart.map((item, index) => `
-                <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl">
-                    <img src="${item.img}" class="w-12 h-12 rounded-lg">
-                    <div class="flex-1">
-                        <p class="text-xs font-bold">${item.name}</p>
-                        <p class="text-indigo-600 text-xs font-bold">৳${item.price}</p>
-                    </div>
-                    <i onclick="remove(${index})" class="fas fa-trash text-red-500 cursor-pointer"></i>
-                </div>
-            `).join('');
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl z-[2000] translate-x-full">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h4 class="font-bold text-xl">আপনার শপিং ব্যাগ</h4>
+                <i onclick="toggleCart(false)" class="fas fa-times text-2xl cursor-pointer text-gray-400 hover:text-red-500"></i>
+            </div>
             
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('totalAmount').innerText = '৳ ' + total;
-        }
+            <div id="cartItems" class="flex-1 overflow-y-auto py-4 space-y-4">
+                </div>
 
-        function remove(i) { cart.splice(i, 1); updateCart(); }
+            <div class="border-t pt-6">
+                <div class="flex justify-between text-xl font-bold mb-6 text-gray-800">
+                    <span>সর্বমোট:</span>
+                    <span id="totalPrice">৳ ০</span>
+                </div>
+                <button onclick="sendWhatsAppOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl transition-all active:scale-95">
+                    <i class="fab fa-whatsapp text-2xl"></i> হোয়াটসঅ্যাপে অর্ডার করুন
+                </button>
+            </div>
+        </div>
+    </div>
 
-        function toggleCart(force = null) {
-            const sidebar = document.getElementById('cartSidebar');
-            if(force === true) sidebar.style.transform = 'translateX(0)';
-            else sidebar.style.transform = sidebar.style.transform === 'translateX(0%)' ? 'translateX(100%)' : 'translateX(0%)';
-        }
-
-        // Order Algorithm (WhatsApp Flow)
-        function sendOrder() {
-            if(cart.length === 0) return alert("আপনার কার্ট খালি!");
-            let list = "BazarBD Express - নতুন অর্ডার%0A----------------------%0A";
-            cart.forEach(p => list += `• ${p.name} - ৳${p.price}%0A`);
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            list += `----------------------%0Aমোট: ৳${total}`;
-            window.open(`https://wa.me/8801317496029?text=${list}`);
-        }
-
-        loadProducts();
-    </script>
-</body>
-</html>
+    <footer class="bg-white border-t mt-20 p-10 text-center">
+        <h2 class="text-2xl font-black italic text-blue-700">BazarBD Express</h2>
+        <p class="text-gray-400 text-xs mt-2 italic font-bold text-orange-500 uppercase">Best Quality, Best Price</p>
+        <p class="text-
