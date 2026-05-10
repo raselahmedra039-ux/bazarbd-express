@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -93,4 +93,85 @@
     <footer class="bg-white border-t mt-20 p-10 text-center">
         <h2 class="text-2xl font-black italic text-blue-700">BazarBD Express</h2>
         <p class="text-gray-400 text-xs mt-2 italic font-bold text-orange-500 uppercase">Best Quality, Best Price</p>
-        <p class="text-
+        <p class="text-gray-400 text-[10px] mt-6">মালিক ও পরিচালক: গৌরব | 01317496029</p>
+    </footer>
+
+    <script>
+        // ৫. প্রোডাক্ট ডাটাবেস অ্যালগরিদম (htbazar স্টাইল ইমেজ)
+        const products = [
+            { id: 1, name: "Smart Watch T800 Ultra", price: 1500, img: "https://images.unsplash.com/photo-1546868871-70c122467d9b?w=400" },
+            { id: 2, name: "Mini Rechargeable Fan", price: 550, img: "https://images.unsplash.com/photo-1622322062681-3e49e29f0004?w=400" },
+            { id: 3, name: "Original 18W Charger", price: 450, img: "https://images.unsplash.com/photo-1614030616194-46960f8546b1?w=400" },
+            { id: 4, name: "M10 Wireless Earbuds", price: 850, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
+            { id: 5, name: "Premium Power Bank", price: 1800, img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400" }
+        ];
+
+        let cart = [];
+
+        // ডাইনামিক রেন্ডারিং লজিক
+        function displayProducts() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = products.map(p => `
+                <div class="product-card bg-white p-2 border border-gray-100 rounded-xl">
+                    <img src="${p.img}" class="w-full h-40 object-cover rounded-lg mb-3">
+                    <div class="px-2">
+                        <h5 class="text-xs font-bold text-gray-700 truncate">${p.name}</h5>
+                        <p class="text-blue-700 font-black mt-1">৳${p.price}</p>
+                        <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg text-[10px] font-bold shadow-md hover:bg-orange-500 transition">ADD TO CART</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // কার্ট ম্যানেজমেন্ট অ্যালগরিদম
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            toggleCart(true);
+        }
+
+        function updateCart() {
+            document.getElementById('cartBadge').innerText = cart.length;
+            const cartContainer = document.getElementById('cartItems');
+            cartContainer.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <img src="${item.img}" class="w-14 h-14 object-cover rounded-lg">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-800">${item.name}</p>
+                        <p class="text-blue-600 text-xs font-bold mt-1">৳${item.price}</p>
+                    </div>
+                    <i onclick="removeFromCart(${index})" class="fas fa-trash-alt text-red-400 cursor-pointer hover:text-red-600 px-2"></i>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('totalPrice').innerText = '৳ ' + total;
+        }
+
+        function removeFromCart(i) {
+            cart.splice(i, 1);
+            updateCart();
+        }
+
+        function toggleCart(open) {
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
+        }
+
+        // হোয়াটসঅ্যাপ অর্ডার পে-লোড অ্যালগরিদম
+        function sendWhatsAppOrder() {
+            if(cart.length === 0) return alert("কার্টটি খালি! কিছু পণ্য যোগ করুন।");
+            let message = "নতুন অর্ডার (BazarBD Express)%0A------------------------%0A";
+            cart.forEach((p, index) => {
+                message += `${index + 1}. ${p.name} - ৳${p.price}%0A`;
+            });
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            message += `------------------------%0Aমোট বিল: ৳${total}%0A%0Aআমার ঠিকানা: `;
+            window.open(`https://wa.me/8801317496029?text=${message}`);
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
