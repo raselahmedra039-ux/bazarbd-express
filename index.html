@@ -1,176 +1,310 @@
-<!DOCTYPE html>
+fg <section class="container mx-auto px-4 py-10 bg-[#e8f1f8] rounded-3xl my-8">
+    <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-black text-gray-800 mb-8 border-b-2 border-blue-200 pb-4 uppercase tracking-tighter italic">প্রয়োজনীয় কিছু তথ্য</h2>
+        
+        <div class="space-y-2">
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(1)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>অর্ডার কিভাবে করবো?</span>
+                    <i id="icon-1" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-1" class="hidden pb-4 text-sm text-gray-600 leading-relaxed animate-fade-in">
+                    আপনার পছন্দের পণ্যটি কার্টে যোগ করুন এবং 'অর্ডার করুন' বাটনে ক্লিক করে আপনার নাম, ঠিকানা ও মোবাইল নম্বর দিয়ে অর্ডার কনফার্ম করুন। আমাদের প্রতিনিধি কল করে আপনার অর্ডারটি ভেরিফাই করবেন।
+                </div>
+            </div>
+
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(2)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>অর্ডার কনফার্ম হতে কত সময় লাগে?</span>
+                    <i id="icon-2" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-2" class="hidden pb-4 text-sm text-gray-600 leading-relaxed">
+                    অর্ডার করার ২৪ ঘণ্টার মধ্যে আমাদের কাস্টমার কেয়ার প্রতিনিধি আপনাকে কল করে অর্ডারটি কনফার্ম করবেন।
+                </div>
+            </div>
+
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(3)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>ডেলিভারি চার্জ কত?</span>
+                    <i id="icon-3" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-3" class="hidden pb-4 text-sm text-gray-600 leading-relaxed">
+                    ঢাকার ভেতরে ডেলিভারি চার্জ ৭০ টাকা এবং ঢাকার বাইরে ১৫০ টাকা। তবে বিশেষ অফারে ডেলিভারি চার্জ ফ্রি থাকতে পারে।
+                </div>
+            </div>
+
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(4)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>পণ্য কত দিনে ডেলিভারি পাবো?</span>
+                    <i id="icon-4" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-4" class="hidden pb-4 text-sm text-gray-600 leading-relaxed">
+                    ঢাকার ভেতরে ২-৩ দিন এবং ঢাকার বাইরে ৩-৫ কর্মদিবসের মধ্যে আপনি পণ্য হাতে পাবেন।
+                </div>
+            </div>
+
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(5)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>পেমেন্ট কিভাবে করবো?</span>
+                    <i id="icon-5" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-5" class="hidden pb-4 text-sm text-gray-600 leading-relaxed">
+                    আমরা ক্যাশ অন ডেলিভারি (পণ্য বুঝে পেয়ে পেমেন্ট) সুবিধা দিয়ে থাকি। এছাড়াও বিকাশ বা নগদের মাধ্যমে অগ্রিম পেমেন্ট করা সম্ভব।
+                </div>
+            </div>
+            
+            <div class="border-b border-blue-100">
+                <button onclick="toggleFaq(6)" class="w-full flex justify-between items-center py-4 text-left font-bold text-gray-700 hover:text-blue-700 transition">
+                    <span>পণ্য রিটার্ন করা যাবে কি?</span>
+                    <i id="icon-6" class="fas fa-plus text-xs text-gray-400"></i>
+                </button>
+                <div id="faq-6" class="hidden pb-4 text-sm text-gray-600 leading-relaxed">
+                    হ্যাঁ, যদি পণ্যটি ত্রুটিযুক্ত হয় তবে ডেলিভারি ম্যানের সামনেই চেক করে রিটার্ন করতে পারবেন। পরবর্তী ৭ দিনের মধ্যে আমাদের জানালে রিপ্লেসমেন্ট সুবিধা পাবেন।
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // FAQ টগল লজিক (A to Z Algorithm)
+    function toggleFaq(id) {
+        const content = document.getElementById(`faq-${id}`);
+        const icon = document.getElementById(`icon-${id}`);
+        
+        // অন্য সব খোলা থাকলে সেগুলো বন্ধ করার জন্য (ঐচ্ছিক)
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.classList.replace('fa-plus', 'fa-minus');
+            icon.classList.add('text-blue-600');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.replace('fa-minus', 'fa-plus');
+            icon.classList.remove('text-blue-600');
+        }
+    }
+</script>
+
+<style>
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>fg
+<div id="aiModeContent" class="container mx-auto p-4 animate-fade-in">
+    
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100">
+            <i class="fas fa-coins text-yellow-500"></i>
+            <span class="text-sm font-bold">100 Credits</span>
+        </div>
+        <button class="bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-bold">
+            <i class="fas fa-bolt"></i> Upgrade
+        </button>
+    </div>
+
+    <div class="bg-white p-6 rounded-3xl shadow-sm border border-orange-100 mb-6">
+        <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white text-xl shadow-lg">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg leading-tight">Smart sourcing with <span class="text-orange-600">AI Mode</span></h3>
+                <p class="text-[10px] text-gray-400">Take ideas to production instantly</p>
+            </div>
+        </div>
+
+        <div class="space-y-3">
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-magic text-blue-500"></i>
+                    <span class="text-sm font-semibold">Your Next Best Supplier Is Here</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300 text-xs"></i>
+            </div>
+            
+            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-chart-line text-green-500"></i>
+                    <span class="text-sm font-semibold">See What's Trending In Market</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300 text-xs"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-24 left-4 right-4">
+        <div class="bg-white border-2 border-orange-200 rounded-[30px] p-2 flex items-center shadow-2xl">
+            <button class="p-3 text-gray-400"><i class="fas fa-camera"></i></button>
+            <input type="text" placeholder="Describe your needs..." class="flex-1 px-2 py-3 outline-none text-sm font-medium">
+            <button class="bg-orange-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+    </div>
+</div>
+DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BazarBD Express | Premium Online Shop</title>
+    <title>BazarBD Express | AI Sourcing Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f4f7f9; }
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f9fafb; padding-bottom: 70px; }
+        .app-shadow { box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .product-card { transition: all 0.3s ease; border: 1px solid #eee; border-radius: 8px; overflow: hidden; background: #fff; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: #2563eb; }
-        .sticky-nav { position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .chat-container { height: calc(100vh - 140px); overflow-y: auto; padding-bottom: 20px; }
+        .user-message { background-color: #2563eb; color: white; border-radius: 15px 15px 0 15px; padding: 10px 15px; max-width: 70%; align-self: flex-end; margin-bottom: 10px; }
+        .ai-message { background-color: white; color: #1f2937; border-radius: 15px 15px 15px 0; padding: 10px 15px; max-width: 70%; align-self: flex-start; margin-bottom: 10px; border: 1px solid #e5e7eb; }
+        .sourcing-option { background-color: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 15px; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
+        .sourcing-option:hover { border-color: #f97316; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body>
+<body class="text-gray-900 flex flex-col">
 
-    <header class="bg-white border-b sticky-nav">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <button class="md:hidden text-gray-600 text-xl"><i class="fas fa-bars"></i></button>
-                <h1 class="text-2xl font-black italic text-blue-700">BazarBD<span class="text-orange-500">Express</span></h1>
-            </div>
-            
-            <div class="flex-1 max-w-2xl relative hidden md:block">
-                <input type="text" placeholder="পণ্য এখানে খুঁজুন..." class="w-full bg-gray-100 border border-gray-200 py-2 px-5 rounded-full outline-none focus:border-blue-500 transition">
-                <button class="absolute right-3 top-2 text-gray-400"><i class="fas fa-search"></i></button>
-            </div>
-
-            <div class="flex items-center gap-6">
-                <div class="relative cursor-pointer" onclick="openCart()">
-                    <i class="fas fa-shopping-cart text-2xl text-gray-700"></i>
-                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] px-1.5 rounded-full font-bold">0</span>
-                </div>
-                <div class="hidden md:block text-right">
-                    <p class="text-[10px] text-gray-400 uppercase leading-none">হেল্পলাইন</p>
-                    <p class="text-sm font-bold text-blue-700 leading-none mt-1">01317496029</p>
-                </div>
-            </div>
+    <header class="bg-white sticky top-0 z-[100] app-shadow p-4 pt-1.5 flex items-center justify-between">
+        <div class="flex items-center gap-1">
+            <i class="fas fa-bars text-gray-500 text-lg"></i>
+            <h1 class="text-2xl font-black italic text-blue-700 tracking-tighter">BazarBD<span class="text-orange-600">Express</span></h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <i class="fas fa-qrcode text-gray-500 text-lg"></i>
+            <i class="fas fa-bell text-gray-500 text-lg"></i>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-        
-        <aside class="hidden md:block bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="bg-blue-700 text-white p-4 font-bold flex items-center gap-2">
-                <i class="fas fa-list"></i> সকল ক্যাটাগরি
+    <main class="flex-1 p-4">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-gray-800 border-l-4 border-orange-500 pl-3">AI Sourcing Mode</h2>
+            <div class="flex items-center gap-2 text-sm text-gray-600 bg-white px-3 py-1.5 rounded-full border border-gray-100">
+                <i class="fas fa-coins text-yellow-500"></i>
+                <span>100 Credits</span>
+                <button class="text-orange-500 font-bold">Upgrade</button>
             </div>
-            <ul class="text-sm font-medium text-gray-600">
-                <li class="p-3 border-b hover:bg-gray-50 cursor-pointer flex justify-between items-center">স্মার্ট ওয়াচ <i class="fas fa-chevron-right text-[10px] opacity-30"></i></li>
-                <li class="p-3 border-b hover:bg-gray-50 cursor-pointer flex justify-between items-center">চার্জার ফ্যান <i class="fas fa-chevron-right text-[10px] opacity-30"></i></li>
-                <li class="p-3 border-b hover:bg-gray-50 cursor-pointer flex justify-between items-center">ইলেকট্রনিক্স <i class="fas fa-chevron-right text-[10px] opacity-30"></i></li>
-                <li class="p-3 border-b hover:bg-gray-50 cursor-pointer flex justify-between items-center">হেডফোন <i class="fas fa-chevron-right text-[10px] opacity-30"></i></li>
-                <li class="p-3 border-b hover:bg-gray-50 cursor-pointer flex justify-between items-center">গ্যাজেট <i class="fas fa-chevron-right text-[10px] opacity-30"></i></li>
-            </ul>
-        </aside>
+        </div>
 
-        <div class="md:col-span-3 space-y-6">
-            <div class="w-full h-48 md:h-80 bg-gradient-to-r from-blue-800 to-indigo-600 rounded-2xl p-8 text-white relative flex items-center shadow-lg overflow-hidden">
-                <div class="z-10">
-                    <h2 class="text-2xl md:text-5xl font-black mb-2 italic">Mega Offer!</h2>
-                    <p class="text-sm md:text-xl opacity-90">সাশ্রয়ী মূল্যে সেরা অনলাইন শপিং</p>
-                    <button class="mt-6 bg-orange-500 text-white px-8 py-3 rounded-xl font-bold hover:scale-105 transition shadow-xl">এখনই কিনুন</button>
-                </div>
-                <i class="fas fa-shopping-bag absolute -right-10 -bottom-10 text-[250px] opacity-10 rotate-12"></i>
-            </div>
-
-            <div class="flex items-center justify-between py-2 border-b-2 border-blue-100">
-                <h3 class="text-xl font-bold text-gray-800 italic uppercase tracking-tighter">আমাদের কালেকশন</h3>
-                <span class="text-blue-600 font-bold text-sm cursor-pointer">View All</span>
-            </div>
+        <div class="chat-container flex flex-col no-scrollbar">
             
-            <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                </div>
-        </div>
-    </main>
+            <div class="ai-message">
+                <p class="text-sm font-semibold mb-1">BazarBD AI Assistent</p>
+                <p class="text-xs">হ্যালো! আমি আপনাকে পণ্য খুঁজে পেতে বা ডিজাইন করতে সাহায্য করতে পারি। আপনার প্রয়োজনীয়তা বলুন।</p>
+            </div>
 
-    <div id="cartPanel" class="fixed right-0 top-0 h-full w-full md:w-96 bg-white shadow-2xl z-[1000] transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-            <h4 class="font-bold text-xl uppercase tracking-tighter">আপনার কার্ট</h4>
-            <i onclick="closeCart()" class="fas fa-times text-2xl cursor-pointer text-gray-400 hover:text-red-500"></i>
+            <div class="sourcing-option" onclick="sendSourcingOption('Create product ideas with AI')">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-lightbulb text-yellow-500 text-xl"></i>
+                    <span class="font-semibold text-sm">Create product ideas with AI</span>
+                </div>
+                <p class="text-xs text-gray-600">আপনার ব্র্যান্ডের জন্য নতুন পণ্যের আইডিয়া তৈরি করুন।</p>
+            </div>
+
+            <div class="sourcing-option" onclick="sendSourcingOption('Find suppliers for existing products')">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-search-dollar text-blue-500 text-xl"></i>
+                    <span class="font-semibold text-sm">Find suppliers for existing products</span>
+                </div>
+                <p class="text-xs text-gray-600">বিদ্যমান পণ্যের জন্য সেরা সোর্সিং পার্টনার খুঁজুন।</p>
+            </div>
+
+            <div class="sourcing-option" onclick="sendSourcingOption('Get market insights and trends')">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-chart-line text-green-500 text-xl"></i>
+                    <span class="font-semibold text-sm">Get market insights and trends</span>
+                </div>
+                <p class="text-xs text-gray-600">বাজারের ট্রেন্ড এবং সুযোগ সম্পর্কে জানুন।</p>
+            </div>
+
+            <div class="absolute bottom-20 left-4 right-4 bg-white rounded-full app-shadow p-2 flex items-center gap-2 border border-gray-100">
+                <input type="text" placeholder="আপনার প্রয়োজনীয়তা বলুন..." class="flex-1 bg-transparent px-4 py-2 text-sm outline-none">
+                <button class="text-orange-500 active:scale-95 transition"><i class="fas fa-camera text-xl"></i></button>
+                <button class="text-orange-500 active:scale-95 transition"><i class="fas fa-microphone text-xl"></i></button>
+                <button oncl
+                    <!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BazarBD Express | অ্যাপ-লাইক অনলাইন শপিং</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; background-color: #f9fafb; padding-bottom: 70px; }
+        .app-shadow { box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .product-card:active { background: #f0f0f0; transition: 0.1s; }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <header class="bg-white sticky top-0 z-[100] app-shadow p-4 pt-1.5 flex items-center justify-between">
+        <div class="flex items-center gap-1">
+            <i class="fas fa-bars text-gray-500 text-lg"></i>
+            <h1 class="text-2xl font-black italic text-blue-700 tracking-tighter">BazarBD<span class="text-orange-600">Express</span></h1>
         </div>
-        <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-qrcode text-gray-500 text-lg"></i>
+            <i class="fas fa-bell text-gray-500 text-lg"></i>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b px-6 py-3 flex gap-8 text-sm font-semibold text-gray-500 overflow-x-auto no-scrollbar">
+        <span class="text-blue-700 border-b-2 border-blue-700 pb-1 cursor-pointer whitespace-nowrap">হোম</span>
+        <span class="cursor-pointer whitespace-nowrap hover:text-blue-700">স্মার্ট ওয়াচ</span>
+        <span class="cursor-pointer whitespace-nowrap hover:text-blue-700">চার্জার ফ্যান</span>
+        <span class="cursor-pointer whitespace-nowrap hover:text-blue-700">ইলেকট্রনিক্স</span>
+        <span class="cursor-pointer whitespace-nowrap hover:text-blue-700">হেডফোন</span>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <div class="w-full h-40 md:h-60 bg-gradient-to-r from-blue-700 to-orange-400 rounded-3xl p-6 text-white relative shadow-inner overflow-hidden">
+            <div class="z-10">
+                <p class="text-xs font-bold opacity-80 mb-2 uppercase tracking-wide">হুবহু আপনার স্টাইলে</p>
+                <h2 class="text-3xl font-black italic tracking-tighter leading-tight">সাশ্রয়ী শপিং</h2>
             </div>
-        <div class="p-6 bg-gray-50 border-t">
-            <div class="flex justify-between font-bold text-xl mb-6">
-                <span>মোট বিল:</span>
-                <span id="totalPrice" class="text-blue-700">৳ ০</span>
-            </div>
-            <button onclick="sendOrder()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 active:scale-95 transition">
-                <i class="fab fa-whatsapp text-2xl"></i> হোয়াটসঅ্যাপে অর্ডার দিন
+            <i class="fas fa-shopping-bag absolute right-[-20px] bottom-[-20px] text-[180px] opacity-10 rotate-12"></i>
+        </div>
+        
+        <div class="relative mt-[-30px] px-2">
+            <input type="text" placeholder="পণ্য এখানে খুঁজুন..." class="w-full bg-white border border-gray-100 rounded-full py-4 px-6 pr-16 shadow-xl outline-none focus:border-orange-500 transition">
+            <button class="absolute right-6 top-3.5 bg-orange-500 text-white p-3 rounded-full text-sm active:scale-95 transition">
+                <i class="fas fa-search"></i>
             </button>
         </div>
     </div>
 
-    <footer class="bg-white mt-20 border-t py-12 px-6">
-        <div class="container mx-auto text-center">
-            <h2 class="text-2xl font-black italic text-blue-700 uppercase">BazarBD Express</h2>
-            <p class="text-gray-400 text-sm mt-3">সেরা পণ্যের আস্থার ঠিকানা। মালিক: গৌরব।</p>
-            <div class="flex justify-center gap-6 mt-8 text-gray-400">
-                <i class="fab fa-facebook-f hover:text-blue-600 cursor-pointer"></i>
-                <i class="fab fa-instagram hover:text-pink-600 cursor-pointer"></i>
-                <i class="fab fa-youtube hover:text-red-600 cursor-pointer"></i>
+    <section class="container mx-auto px-4 py-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <div class="product-card bg-white p-3 rounded-2xl border border-gray-100 transition-all flex flex-col justify-between">
+            <img src="https://images.unsplash.com/photo-1546868871-70c122467d9b?w=400" class="w-full h-36 object-cover rounded-xl mb-3">
+            <div>
+                <h4 class="text-xs font-bold text-gray-700 truncate mb-1">Ultra Smart Watch T800</h4>
+                <div class="flex items-end gap-2">
+                    <span class="text-blue-700 font-bold text-lg">৳১৫০০</span>
+                    <span class="text-[9px] text-gray-400 line-through">৳২০০০</span>
+                </div>
+                <button onclick="addToCart(1)" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl text-xs font-semibold hover:bg-orange-500 active:scale-95 transition shadow-md">অর্ডার করুন</button>
             </div>
-            <p class="text-[10px] text-gray-300 mt-10">© ২০২৬ গৌরব | All Rights Reserved.</p>
         </div>
-    </footer>
 
-    <script>
-        // ৫. প্রোডাক্ট ডেটা (htbazar স্টাইল)
-        const products = [
-            { id: 1, name: "T800 Ultra Smart Watch", price: 1500, img: "https://images.unsplash.com/photo-1546868871-70c122467d9b?w=400" },
-            { id: 2, name: "Mini Portable Fan", price: 550, img: "https://images.unsplash.com/photo-1622322062681-3e49e29f0004?w=400" },
-            { id: 3, name: "Original 18W Fast Charger", price: 450, img: "https://images.unsplash.com/photo-1614030616194-46960f8546b1?w=400" },
-            { id: 4, name: "M10 TWS Wireless Earbuds", price: 850, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400" },
-            { id: 5, name: "Fast Charging Power Bank", price: 1800, img: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400" }
-        ];
-
-        let cart = [];
-
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card p-2">
-                    <img src="${p.img}" class="w-full h-40 object-cover rounded-md mb-3">
-                    <h5 class="text-sm font-bold text-gray-700 truncate">${p.name}</h5>
-                    <p class="text-blue-700 font-bold mt-1">৳${p.price}</p>
-                    <button onclick="addToCart(${p.id})" class="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg text-xs font-bold hover:bg-orange-500 transition shadow-md">অর্ডার করুন</button>
+        <div class="product-card bg-white p-3 rounded-2xl border border-gray-100 transition-all flex flex-col justify-between">
+            <img src="https://images.unsplash.com/photo-1622322062681-3e49e29f0004?w=400" class="w-full h-36 object-cover rounded-xl mb-3">
+            <div>
+                <h4 class="text-xs font-bold text-gray-700 truncate mb-1">Portable Mini Charger Fan</h4>
+                <div class="flex items-end gap-2">
+                    <span class="text-blue-700 font-bold text-lg">৳৫৫০</span>
+                    <span class="text-[9px] text-gray-400 line-through">৳৮০০</span>
                 </div>
-            `).join('');
-        }
+                <button onclick="addToCart(2)" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl text-xs font-semibold hover:bg-orange-500 active:scale-95 transition shadow-md">অর্ডার করুন</button>
+            </div>
+        </div>
 
-        function addToCart(id) {
-            const item = products.find(p => p.id === id);
-            cart.push(item);
-            updateCart();
-            openCart();
-        }
+    </section>
 
-        function updateCart() {
-            document.getElementById('cartCount').innerText = cart.length;
-            const container = document.getElementById('cartItems');
-            container.innerHTML = cart.map((item, index) => `
-                <div class="flex items-center gap-4 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
-                    <img src="${item.img}" class="w-14 h-14 object-cover rounded-lg">
-                    <div class="flex-1">
-                        <p class="text-xs font-bold text-gray-800">${item.name}</p>
-                        <p class="text-blue-600 text-xs font-bold mt-1">৳${item.price}</p>
-                    </div>
-                    <i onclick="remove(${index})" class="fas fa-trash-alt text-red-400 cursor-pointer hover:text-red-600"></i>
-                </div>
-            `).join('');
-            
-            const total = cart.reduce((sum, i) => sum + i.price, 0);
-            document.getElementById('totalPrice').innerText = '৳ ' + total;
-        }
-
-        function remove(i) { cart.splice(i, 1); updateCart(); }
-        function openCart() { document.getElementById('cartPanel').style.transform = 'translateX(0)'; }
-        function closeCart() { document.getElementById('cartPanel').style.transform = 'translateX(100%)'; }
-
-        function sendOrder() {
-            if(cart.length === 0) return alert("কার্ট খালি!");
-            let list = "BazarBD Express - নতুন অর্ডার%0A----------------------%0A";
-            cart.forEach((p, i) => list += `${i+1}. ${p.name} - ৳${p.price}%0A`);
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            list += `----------------------%0Aমোট বিল: ৳${total}`;
-            window.open(`https://wa.me/8801317496029?text=${list}`);
-        }
-
-        renderProducts();
-    </script>
-</body>
-</html>
+    <div onclick="checkout()" class="fixed b
